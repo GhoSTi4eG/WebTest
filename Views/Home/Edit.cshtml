@@ -1,0 +1,39 @@
+﻿@model WebTest.Models.Contact
+<head>
+
+</head>
+<body>
+    <header>
+        <h2>Редактирование контакта</h2>
+    </header>
+<form asp-action="edit" asp-controller="home" asp-route-id="@Model.TabN">
+
+    <p>
+        <label asp-for="FIO">ФИО</label><br/>
+        <input type="text" asp-for="FIO"/>
+    </p>
+     <p>
+        <label asp-for="DateBoth">Дата Рождения</label><br/>
+        <input type="date" asp-for="DateBoth"/>
+    </p>
+     <p>
+        <label asp-for="Adress">Адрес</label><br/>
+        <input type="text" asp-for="Adress"/>
+    </p>
+     <p>
+        <label asp-for="InNmb">Внутренний номер</label><br/>
+        <input type="number" asp-for="InNmb"/>
+    </p>
+     <p>
+        <label asp-for="OutNmb">Мобильный</label><br/>
+        <input type="number" asp-for="OutNmb"/>
+    </p>
+     <p>
+        <label asp-for="Email">Эл.Почта</label><br/>
+        <input type="email" asp-for="Email"/>
+    </p>
+     <p>
+        <input type="submit" value="Сохранить"/>
+    </p>
+</form>
+</body>

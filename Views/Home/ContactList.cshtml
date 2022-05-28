@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<WebTest.Models.Contact>
+
+<h2>Список пользователей</h2>
+<p><a asp-action="Create">Добавить пользователя</a></p>
+<table class="table">
+    <tr>
+        <th>Табельный номер</th>
+        <th>ФИО</th>
+        <th>Адрес</th>
+        <th>Эл.Почта</th>
+        <th>Дата рождения</th>
+        <th>Вн. Номер</th>
+        <th>Внеш. номер</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr> 
+            <td>@item.TabN</td>
+            <td>@item.FIO</td>
+            <td>@item.Adress</td>
+            <td>@item.Email</td>
+            <td>@item.DateBoth</td>
+            <td>@item.InNmb</td>
+            <td>@item.OutNmb</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.TabN">Изменить</a>
+            </td>
+            <td>
+                <form asp-controller="Home" asp-action="Delete" method="post" asp-route-id="@item.TabN">
+                <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
