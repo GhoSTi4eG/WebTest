@@ -15,20 +15,19 @@ namespace WebTest.Controllers
             _logger = logger;
             db = context;
         }
-
-        public IActionResult Index()
+        public IActionResult Index()         //Главная страница
         {
             return View();
         }
-        public async Task<IActionResult> ContactList()
+        public async Task<IActionResult> ContactListEdit() //страница редактирования списка
         {
             return View(await db.Contact.ToListAsync());
         }
-        public IActionResult Privacy()
+        public async Task<IActionResult> ContactListShow() //страница показа списка
         {
-            return View();
+            return View(await db.Contact.ToListAsync());
         }
-        public IActionResult Create()
+        public IActionResult Create() //страница добавление контакта 
         {
             return View();
         }
@@ -37,7 +36,7 @@ namespace WebTest.Controllers
         {
             db.Contact.Add(contacts);
             await db.SaveChangesAsync();
-            return RedirectToAction("ContactList");
+            return RedirectToAction("ContactListEdit");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -55,7 +54,7 @@ namespace WebTest.Controllers
                 Contact contact = new Contact { TabN = id.Value };
                 db.Entry(contact).State = EntityState.Deleted;
                     await db.SaveChangesAsync();
-                    return RedirectToAction("ContactList");
+                    return RedirectToAction("ContactListEdit");
             }
             return NotFound();
         }
@@ -75,7 +74,7 @@ namespace WebTest.Controllers
         {
             db.Contact.Update(contact);
             await db.SaveChangesAsync();
-            return RedirectToAction("ContactList");
+            return RedirectToAction("ContactListEdit");
         }
 
     }
