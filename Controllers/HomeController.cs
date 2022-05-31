@@ -27,7 +27,7 @@ namespace WebTest.Controllers
         {
             return View(await db.Contact.ToListAsync());
         }
-        public IActionResult Create() //страница добавление контакта 
+        public IActionResult Create()  //страница добавление контакта 
         {
             return View();
         }
@@ -38,6 +38,7 @@ namespace WebTest.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("ContactListEdit");
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

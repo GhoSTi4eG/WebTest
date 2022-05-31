@@ -3,6 +3,14 @@ using WebTest.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+/*
+builder.Services.AddAuthorization(options =>
+{
+    // By default, all incoming requests will be authorized according to the default policy.
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+builder.Services.AddRazorPages();
+*/
 // получаем строку подключения из файла конфигурации
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 // добавляем контекст ApplicationContext в качестве сервиса в приложение
@@ -27,6 +35,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
