@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization; 
 using System.Diagnostics;
 using WebTest.Models;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ namespace WebTest.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-               
+
         public ApplicationContext db;
         public HomeController(ILogger<HomeController> logger, ApplicationContext context)
         {
@@ -19,6 +20,9 @@ namespace WebTest.Controllers
         {
             return View();
         }
+
+        //    [Authorize(Roles =@"Administrators")] // так не работает
+        [Authorize(Roles = @"GHOST-PC\\ДНС")] // так  работает
         public async Task<IActionResult> ContactListEdit() //страница редактирования списка
         {
             return View(await db.Contact.ToListAsync());
@@ -76,6 +80,15 @@ namespace WebTest.Controllers
             db.Contact.Update(contact);
             await db.SaveChangesAsync();
             return RedirectToAction("ContactListEdit");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

@@ -2,12 +2,10 @@
 
 namespace WebTest.Models
 {
-    public class User
+    public class Users
     {
-        [Key]
-        public int Id { get; set; }
+        [Key]//ключ
         public string Name { get; set; }
-        public int? RoleId { get; set; }
         public Roles Role { get; set; }
     }
 }

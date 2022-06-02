@@ -1,5 +1,8 @@
 ﻿
 @model IEnumerable<WebTest.Models.Contact>
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
 
 <style>
 .results tr[visible='false'],
